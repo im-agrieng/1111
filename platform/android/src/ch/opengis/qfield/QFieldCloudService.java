@@ -1,5 +1,5 @@
 /**
- * SIGPACGoCloudService.java
+ * QFieldCloudService.java
  * @author  Mathieu Pellerin - <mathieu@opengis.ch>
  */
 /*
@@ -29,7 +29,7 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package ch.opengis.sigpacgo;
+package ch.opengis.qfield;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -40,23 +40,23 @@ import android.os.Build;
 import android.util.Log;
 import org.qtproject.qt.android.bindings.QtService;
 
-public class SIGPACGoCloudService extends QtService {
+public class QFieldCloudService extends QtService {
 
     private NotificationManager notificationManager;
     private NotificationChannel notificationChannel;
 
-    private final String CHANNEL_ID = "sigpacgo_service_01";
+    private final String CHANNEL_ID = "qfield_service_01";
     private final int NOTIFICATION_ID = 101;
 
-    public static void startSIGPACGoCloudService(Context context) {
-        Log.v("SIGPACGoCloudService", "Starting SIGPACGoCloudService");
-        Intent intent = new Intent(context, SIGPACGoCloudService.class);
+    public static void startQFieldCloudService(Context context) {
+        Log.v("QFieldCloudService", "Starting QFieldCloudService");
+        Intent intent = new Intent(context, QFieldCloudService.class);
         context.startService(intent);
     }
 
     @Override
     public void onCreate() {
-        Log.v("SIGPACGoCloudService", "onCreate triggered");
+        Log.v("QFieldCloudService", "onCreate triggered");
         super.onCreate();
 
         notificationManager =
@@ -64,10 +64,10 @@ public class SIGPACGoCloudService extends QtService {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             notificationChannel =
-                new NotificationChannel(CHANNEL_ID, "SIGPAC-Go Cloud",
+                new NotificationChannel(CHANNEL_ID, "QFieldCloud",
                                         NotificationManager.IMPORTANCE_DEFAULT);
             notificationChannel.setDescription(
-                "SIGPAC-Go Cloud background synchronization");
+                "QFieldCloud background synchronization");
             notificationChannel.enableLights(false);
             notificationChannel.enableVibration(false);
             notificationManager.createNotificationChannel(notificationChannel);
@@ -76,7 +76,7 @@ public class SIGPACGoCloudService extends QtService {
 
     @Override
     public void onDestroy() {
-        Log.v("SIGPACGoCloudService", "onDestroy triggered");
+        Log.v("QFieldCloudService", "onDestroy triggered");
         notificationManager.cancel(NOTIFICATION_ID);
         super.onDestroy();
     }
@@ -91,9 +91,9 @@ public class SIGPACGoCloudService extends QtService {
     private void showNotification() {
         Notification.Builder builder =
             new Notification.Builder(this)
-                .setSmallIcon(R.drawable.sigpacgo_logo)
+                .setSmallIcon(R.drawable.qfield_logo)
                 .setWhen(System.currentTimeMillis())
-                .setContentTitle("SIGPAC-Go Cloud")
+                .setContentTitle("QFieldCloud")
                 .setContentText(getString(R.string.upload_pending_attachments))
                 .setProgress(0, 0, true);
 
