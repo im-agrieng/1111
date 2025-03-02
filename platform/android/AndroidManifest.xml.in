@@ -45,14 +45,14 @@
   <application
     android:hardwareAccelerated="true"
     android:name="org.qtproject.qt.android.bindings.QtApplication"
-    android:label="SIGPAC-Go"
+    android:label="@APP_NAME@"
     android:icon="@AT@drawable/@APP_ICON@"
     android:usesCleartextTraffic="true"
     android:requestLegacyExternalStorage="true"
     android:theme="@style/AppTheme">
     <activity
       android:name="ch.opengis.@APP_PACKAGE_NAME@.QFieldActivity"
-      android:label="SIGPAC-Go"
+      android:label="@APP_NAME@"
       android:icon="@AT@drawable/@APP_ICON@"
       android:launchMode="singleTask"
       android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|locale|fontScale|keyboard|keyboardHidden|navigation"
